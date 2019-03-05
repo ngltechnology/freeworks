@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import GoogleMapsApiLoader from 'google-maps-api-loader';
 
-const API_KEY = "XXXXXXXXXXXXXX"
 
 //google mapsのオブジェクト呼び出し
 export const useGoogleMap = (apikey) => {
