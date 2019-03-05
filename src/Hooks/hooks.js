@@ -39,7 +39,7 @@ export const useMapMarker = ({ markers, googleMap, map }) => {
             return
         }
         const { Marker } = googleMap.maps
-        const mapMarkerObj = markers.map((position) => new Marker({
+        markers.map((position) => new Marker({
             position,
             map,
             title: "marker!"
