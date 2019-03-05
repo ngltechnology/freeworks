@@ -31,3 +31,18 @@ export const useMap = ({ googleMap, mapContainerRef, initialConfig }) => {
     //あとで使えるようにmapを返すようにする
     return map
 }
+
+// add hooks to add marker
+export const useMapMarker = ({ markers, googleMap, map }) => {
+    useEffect(() => {
+        if (!googleMap || !map) {
+            return
+        }
+        const { Marker } = googleMap.maps
+        const mapMarkerObj = markers.map((position) => new Marker({
+            position,
+            map,
+            title: "marker!"
+        }))
+    },[googleMap, map])
+}
