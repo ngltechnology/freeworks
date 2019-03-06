@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { useGoogleMap, useMap, useMapMarker } from '../Hooks/hooks';
+import { useGoogleMap, useMap, useDrawMapMarkers, useMarkerState, useMapClickEvent } from '../Hooks/hooks';
 
 
 const API_KEY = undefined;
@@ -9,7 +9,7 @@ const initialConfig = {
     center: { lat: 35.6432027, lng: 139.6729435 }
 };
 
-const markers = [
+const initialMarkers = [
     //ここにfirestoreからとってくればよさそう
     { lat: 35.6432027, lng: 139.6729435 },
     { lat: 35.5279833, lng: 139.6989209 },
@@ -24,7 +24,17 @@ export const MapApp = () => {
     const mapContainerRef = useRef(null);
     const map = useMap({ googleMap, mapContainerRef, initialConfig });
 
-    useMapMarker({ markers, googleMap, map })
+    const { markers, addMarker } = useMarkerState(initialMarkers)
+
+    useDrawMapMarkers({ markers, googleMap, map })
+
+    useMapClickEvent({
+        onClickMap: ({ lat, lng }) => {
+            addMarker({ lat, lng })
+        },
+        map,
+        googleMap
+    })
 
     return (
         <div

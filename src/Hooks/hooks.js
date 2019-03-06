@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import GoogleMapsApiLoader from 'google-maps-api-loader';
 
 
@@ -33,16 +33,53 @@ export const useMap = ({ googleMap, mapContainerRef, initialConfig }) => {
 }
 
 // add hooks to add marker
-export const useMapMarker = ({ markers, googleMap, map }) => {
+export const useDrawMapMarkers = ({ markers, googleMap, map }) => {
+    
+    const markerObjectRef = useRef({})
+    
     useEffect(() => {
         if (!googleMap || !map) {
             return
         }
         const { Marker } = googleMap.maps
-        markers.map((position) => new Marker({
-            position,
-            map,
-            title: "marker!"
-        }))
-    },[googleMap, map])
+        markers.map((position, i) => {
+            if (markerObjectRef.current[i]) {
+                return
+            }
+            const markerObj = new Marker({
+                position,
+                map,
+                title: "marker!"
+            })
+            markerObjectRef.current[i] = markerObj
+        })
+    },[markers, googleMap, map])
 }
+
+// 3.markerをstate管理する
+export const useMarkerState = (initialMarkers) => {
+    const [markers, setMarkers] = useState(initialMarkers)
+    const addMarker = ({ lat, lng }) => {
+        setMarkers([...markers, { lat, lng }])
+    }
+    return { markers, addMarker }
+}
+
+// start Event clicked on Map
+export const useMapClickEvent = ({ onClickMap, googleMap, map }) => {
+    useEffect(() => {
+        if (!googleMap || !map) {
+            return
+        }
+        const listener = googleMap.maps.event.addListener(map, 'click', (e) => {
+            onClickMap({
+                lat: e.latLng.lat(),
+                lng: e.latLng.lng()
+            })
+        })
+        // Event is deleted if "onClickMap" changed.
+        return () => {
+            googleMap.maps.event.removeListener(listener)
+        }
+    },[googleMap, map, onClickMap])
+} 
