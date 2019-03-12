@@ -12,6 +12,19 @@
   width: 100%;
 }
 
+.horisontal-list {
+
+  width: 90vw;
+  height: 30vh;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.item {
+  display: inline-block;
+}
+
 .Card {
   position: absolute;
   top: 65%;

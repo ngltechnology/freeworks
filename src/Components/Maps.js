@@ -1,9 +1,7 @@
 import React, { useRef } from 'react';
 import { useGoogleMap, useMap, useDrawMapMarkers, useMarkerState, useMapClickEvent } from '../Hooks/hooks';
 
-import Card from '@material-ui/core/Card';
-import { CardActionArea, CardMedia, CardContent, Typography, CardActions, Button } from '@material-ui/core';
-
+import CardApp from './Card';
 
 require('dotenv').config();
 const API_KEY = process.env.REACT_APP_MAPS_API_KEY;
@@ -51,32 +49,7 @@ export const MapApp = () => {
                 className="Map"
                 ref={mapContainerRef}
             />
-            <Card className="Card">
-                <CardActionArea>
-                    <CardMedia
-                        style={{height: 70}}
-                        image='../Images/cafe.jpg'
-                        title="Cafe image"
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            Lizard
-                        </Typography>
-                        <Typography component="p">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                        across all continents except Antarctica
-                        </Typography>
-                    </CardContent>
-                </CardActionArea>
-                <CardActions>
-                    <Button size="small" color="primary">
-                        Share
-                    </Button>
-                    <Button size="small" color="primary">
-                        Learn More
-                    </Button>
-                </CardActions>
-            </Card>
+            <CardApp />
         </div>            
     );
 };
