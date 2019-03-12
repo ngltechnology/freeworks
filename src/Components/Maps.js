@@ -1,12 +1,21 @@
 import React, { useRef } from 'react';
 import { useGoogleMap, useMap, useDrawMapMarkers, useMarkerState, useMapClickEvent } from '../Hooks/hooks';
 
+import Card from '@material-ui/core/Card';
+import { CardActionArea, CardMedia, CardContent, Typography, CardActions, Button } from '@material-ui/core';
 
-const API_KEY = undefined;
+
+require('dotenv').config();
+const API_KEY = process.env.REACT_APP_MAPS_API_KEY;
 
 const initialConfig = {
     zoom: 12,
-    center: { lat: 35.6432027, lng: 139.6729435 }
+    center: { lat: 35.6432027, lng: 139.6729435 },
+    gestureHandling: 'greedy',
+    disableDefaultUI: true,
+    // zoomControl: {
+    //     position: google.maps.ControlPosition.RIGHT_CENTER,
+    // }
 };
 
 const initialMarkers = [
@@ -25,7 +34,7 @@ export const MapApp = () => {
     const map = useMap({ googleMap, mapContainerRef, initialConfig });
 
     const { markers, addMarker } = useMarkerState(initialMarkers)
-
+    
     useDrawMapMarkers({ markers, googleMap, map })
 
     useMapClickEvent({
@@ -37,9 +46,37 @@ export const MapApp = () => {
     })
 
     return (
-        <div
-            style={{ height: "100vh", width: "100%" }}
-            ref={mapContainerRef}
-        />            
+        <div className="MapApp">
+            <div
+                className="Map"
+                ref={mapContainerRef}
+            />
+            <Card className="Card">
+                <CardActionArea>
+                    <CardMedia
+                        style={{height: 70}}
+                        image='../Images/cafe.jpg'
+                        title="Cafe image"
+                    />
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            Lizard
+                        </Typography>
+                        <Typography component="p">
+                        Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+                        across all continents except Antarctica
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
+                <CardActions>
+                    <Button size="small" color="primary">
+                        Share
+                    </Button>
+                    <Button size="small" color="primary">
+                        Learn More
+                    </Button>
+                </CardActions>
+            </Card>
+        </div>            
     );
 };
