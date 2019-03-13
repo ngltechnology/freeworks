@@ -2,6 +2,13 @@ import React, { useRef } from 'react';
 import { useGoogleMap, useMap, useDrawMapMarkers, useMarkerState, useMapClickEvent } from '../Hooks/hooks';
 
 import CardApp from './Card';
+import { Card, CardHeader, IconButton, CardContent, CardMedia, Typography, CardActions } from '@material-ui/core';
+import Avatar from '@material-ui/core/Avatar';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ShareIcon from '@material-ui/icons/Share';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+
 
 require('dotenv').config();
 const API_KEY = process.env.REACT_APP_MAPS_API_KEY;
@@ -53,7 +60,35 @@ export const MapApp = () => {
             <ul className="lists">
                 {items.map((item,index) => 
                     <li key={index} className="list">
-                        {index}.item:{item}
+                        <Card >
+                            <CardHeader 
+                                avatar={
+                                    <Avatar aria-label='Recipe'>R</Avatar>
+                                }
+                                action={
+                                    <IconButton>
+                                        <MoreVertIcon />
+                                    </IconButton>
+                                }
+                                title="Shrimp and Choriza Paella"
+                                subheader="September 14, 2016"
+                            />
+                            <CardMedia
+                                iamge=''
+                                title=''
+                            />
+                            <CardContent>
+                                <Typography component="p">
+                                    This impressive paella is a perfect party dish and a fun meal to cook together with your
+                                    guests. Add 1 cup of frozen peas along with the mussels, if you like
+                                </Typography>
+                            </CardContent>
+                            <CardActions disableActionSpacing>
+                                <IconButton aria-label="Add to favorites">
+                                    <FavoriteIcon />
+                                </IconButton>
+                            </CardActions>
+                        </Card>
                     </li>
                 )}
             </ul>
