@@ -18,6 +18,7 @@ const CardApp = () => {
             className="CardImage"
             image="../Images/cafe.jpg"
             title="cafe image"
+            style={{ height: 140 }}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h3">

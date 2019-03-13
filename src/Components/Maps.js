@@ -42,6 +42,7 @@ export const MapApp = () => {
         map,
         googleMap
     })
+    const items = [1,2,3,4]
 
     return (
         <div className="MapApp">
@@ -49,7 +50,13 @@ export const MapApp = () => {
                 className="Map"
                 ref={mapContainerRef}
             />
-            <CardApp />
+            <ul className="lists">
+                {items.map((item,index) => 
+                    <li key={index} className="list">
+                        {index}.item:{item}
+                    </li>
+                )}
+            </ul>
         </div>            
     );
 };

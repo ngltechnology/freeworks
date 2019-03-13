@@ -4,15 +4,21 @@
 }
 
 .MapApp{
+  height: 100vh;
+  width: 100vw;
   position: relative;
+  overflow-x: hidden;
 }
 
 .Map{
+  position: fixed;
+  top: 0;
+  left: 0;
   height: 100vh;
-  width: 100%;
+  width: 100vw;
 }
 
-.horisontal-list {
+/* .horisontal-list {
 
   width: 90vw;
   height: 30vh;
@@ -31,4 +37,21 @@
   margin-left: 5%;
   width: 90vw;
   height: 30vh;
+} */
+
+.lists {
+  position: absolute;
+  top: 80vh;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  margin:0;
+  padding:0;
+}
+
+.list {
+  background-color: red;
+  display: inline-block;
+  width: 40vw;
+  margin: 2vw;
 }
