@@ -41,7 +41,7 @@
 
 .lists {
   position: absolute;
-  top: 80vh;
+  top: 70vh;
   overflow-x: auto;
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
@@ -52,6 +52,6 @@
 .list {
   background-color: red;
   display: inline-block;
-  width: 40vw;
+  width: 80vw;
   margin: 2vw;
 }
