@@ -57,6 +57,6 @@ export const MapApp = () => {
                     </li>
                 )}
             </ul>
-        </div>            
+        </div> 
     );
 };
