@@ -8,6 +8,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import ModalApp from './Modal';
 
 
 require('dotenv').config();
@@ -87,6 +88,7 @@ export const MapApp = () => {
                                 <IconButton aria-label="Add to favorites">
                                     <FavoriteIcon />
                                 </IconButton>
+                                <ModalApp />
                             </CardActions>
                         </Card>
                     </li>

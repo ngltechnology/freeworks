@@ -20,7 +20,7 @@ const styles = theme => ({
     paper: {
         position: 'absolute',
         width: theme.spacing.unit * 50,
-        backgroundColor: theme.palette.bachground.paper,
+        backgroundColor: theme.palette.background.paper,
         boxShadow: theme.shadows[5],
         padding: theme.spacing.unit * 4,
         outline: 'none',
@@ -44,7 +44,6 @@ class ModalApp extends React.Component {
         
         return (
             <div>
-                <Typography gutterBottom>Click to get the full modal experience!</Typography>
                 <Button onClick={this.handleOpen}>Open Modal</Button>
                 <Modal
                     aria-labelledby="modal-title"
@@ -66,7 +65,7 @@ class ModalApp extends React.Component {
     }
 }
 
-Modal.prototype = {
+Modal.propType = {
     classes: PropTypes.object.isRequired,
 }
 
